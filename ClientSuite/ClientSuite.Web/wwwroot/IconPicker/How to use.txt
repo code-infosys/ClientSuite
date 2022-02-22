@@ -1,0 +1,12 @@
+<link href="~/Content/IconPicker/IconPicker.min.css" rel="stylesheet" />
+<script src="~/Content/IconPicker/IconPicker.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#Icon').iconpicker({ outputType: 'html' }); 
+    });
+</script>
+
+
+<div class="form-group"> 
+     <input type="text" name="Icon" id="Icon" style="width:50%;" data-iconname='usd' />
+</div>

@@ -1,0 +1,24 @@
+                        //Add notification
+ 
+                        try
+                        {
+                            int user = Env.GetUserInfo("Id", User.Claims).ToInt32();
+                            string userName = Env.GetUserInfo("UserName", User.Claims);
+                            Notification nf = new Notification();
+                            nf.AddedBy = user;
+                            nf.DateAdded = DateTime.Now;
+                            nf.DateModified = null;
+                            nf.Details = "You have new Appointment from " + userName + "";
+                            nf.IsRead = null;
+                            nf.ModifiedBy = null; 
+                            nf.ProcessToUrl = "/Home";
+                            string guid = Guid.NewGuid().ToString();
+                            nf.UniqueId = guid;
+                            nf.TableId = model.Id;
+                            nf.TableName = "Appointment";
+                            nf.ToRoleId = 1;//hardcode now
+                            nf.ToUserId = 1;//hardcode now
+                            _notificationService.Insert(nf);
+                        }
+                        catch (Exception) { }
+                        //Add notification end

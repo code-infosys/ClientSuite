@@ -1,0 +1,52 @@
+<style>
+        .form-control {
+            height: 25px !important;
+            padding: 0px 5px !important;
+        }
+
+        .form-horizontal .control-label {
+            padding-top: 0px !important;
+        }
+
+        label {
+            font-weight: 500 !important;
+        }
+
+        .select2-container .select2-search--inline .select2-search__field {
+            margin-top: 0px !important;
+        }
+
+        .select2-container .select2-selection--multiple {
+            min-height: inherit;
+        }
+
+        button.dt-button, div.dt-button, a.dt-button {
+            padding: 3px 1em !important;
+            border-radius: 0px !important;
+        }
+
+        div.dataTables_length select {
+            padding: 3px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 3px 10px !important;
+        }
+
+        .sidebar-menu > li > a {
+            padding: 3px 5px 3px 15px !important;
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            margin-top: 0px !important;
+        }
+
+        .main-footer {
+            padding: 5px;
+        }
+
+        .sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+    </style>

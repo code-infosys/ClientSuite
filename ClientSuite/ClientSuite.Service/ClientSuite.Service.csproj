@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClientSuite.Data\ClientSuite.Data.csproj" />
+    <ProjectReference Include="..\ClientSuite.Repo\ClientSuite.Repo.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.1" />
+  </ItemGroup>
+</Project>
+

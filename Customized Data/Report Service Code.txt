@@ -1,0 +1,18 @@
+
+//in IService Interface
+Transaction[] GetReport(int user, int role,  Nullable<DateTime> DateFrom = null, Nullable<DateTime> DateTo = null);
+
+
+//In Service Class
+        private int adminRole = 1;
+
+        public Transaction[] GetReport(int user, int role, Nullable<DateTime> DateFrom = null, Nullable<DateTime> DateTo = null)
+        {
+            var tran = this.GetAll(true).Where(i => i.TransactionDate >= DateFrom.Value && i.TransactionDate <= DateTo.Value).AsQueryable();
+            if (role != adminRole)
+            {
+                tran = tran.Where(i => i.AddedBy == user).AsQueryable();
+            }
+ 
+            return tran.ToArray();
+        }

@@ -1,0 +1,134 @@
+@model ClientSuite.Models.User
+<link href="~/theme/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="~/theme/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<script src="~/theme/bower_components/ckeditor/ckeditor.js"></script>
+@*UnComment ckEditor when need and apply 'ckeditor' class to that control*@
+@Html.AjaxFormSubmiter("myForm", "tbUser", true, "Action Successfully Executed", true)
+
+<form id="myForm" asp-action="Edit" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="UserName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="UserName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="FirstName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateOfBirth" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input type="text" asp-for="DateOfBirth" class="form-control" />
+                        <script>$(function () { $('#DateOfBirth').datepicker({ autoclose: true }); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="Address" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="AddedBy" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="ModifiedBy" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="EmailConfirmed" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="EmailConfirmed" class="form-control">
+                            <option selected="selected" value="">Select</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group" style="border: 1px solid dodgerblue;margin-right: 10px;padding: 3px;">
+                    <p style="color:red;">Note:If need to change password than fill other wise leave it blank.</p>
+                    <label asp-for="Password" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6" style="margin-bottom:5px;">
+                        <input type="hidden" asp-for="Password" class="form-control" />
+                        <input type="password" name="NewPassword" class="form-control" />
+                    </div>
+                    <label class="col-lg-4 col-sm-6 control-label">Confirm Password</label>
+                    <div class="col-lg-6">
+                        <input type="password" name="NewPasswordConfirm" class="form-control" />
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label asp-for="LastName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="LastName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfilePicture" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <div class="btn btn-default btn-file">
+                            <i class="fa fa-paperclip"></i>
+                            ProfilePicture
+                            <input asp-for="ProfilePicture" type="file" style="margin-top:10px" />
+                        </div>
+                        <input type="hidden" name="ProfilePicture7" value="@Model.ProfilePicture" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContactNumber" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="ContactNumber" class="form-control" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="ChangePasswordCode" class="form-control" />
+                        <input type="hidden" asp-for="LastLogoutTime" class="form-control" />
+                        <input type="hidden" asp-for="DateAdded" value="@DateTime.Now" />
+                        <input type="hidden" asp-for="DateModied" value="@DateTime.Now" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="IsActive" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsActive" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group"> 
+                    <div class="col-lg-12">
+                        <label asp-for="About" class="control-label"></label>
+                        <textarea asp-for="About" class="form-control ckeditor"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
+

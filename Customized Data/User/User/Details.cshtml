@@ -1,0 +1,101 @@
+@model ClientSuite.Models.User
+  
+<div>
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="UserName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.UserName</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.FirstName</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateOfBirth" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.DateOfBirth</label> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.Email</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.Address</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="About" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Html.Raw(Model.About)</label>
+                    </div>
+                </div>
+                 
+            </div>
+            <div class="col-lg-6">
+                 
+                <div class="form-group">
+                    <label asp-for="LastName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.LastName</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfilePicture" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <img src="~/uploads/@Model.ProfilePicture" style="width:100px;" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContactNumber" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.ContactNumber</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailConfirmed" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.EmailConfirmed</label> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastLogoutTime" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.LastLogoutTime</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateAdded" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.DateAdded</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateModied" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <label class="control-label">@Model.DateModied </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsActive" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsActive" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> 
+</div>
+

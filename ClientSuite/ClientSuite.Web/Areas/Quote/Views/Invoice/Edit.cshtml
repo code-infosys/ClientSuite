@@ -1,0 +1,175 @@
+@model ClientSuite.Models.Invoice
+
+<link href="~/theme/datepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+<script src="~/theme/datepicker/bootstrap-datepicker.min.js"></script>
+<link href="~/theme/Select2/select2.min.css" rel="stylesheet" />
+<script src="~/theme/Select2/select2.full.min.js"></script>
+ 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.select2').select2({ maximumSelectionLength: 1 });
+        });
+    </script>
+@Html.AjaxFormSubmiterV2("myForm", "tbInvoice", true,  Localizer["ActionSuccess"].Value)
+
+<form id="myForm" asp-action="Edit" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = Localizer["FillRequired"].Value })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BusinessLogo" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <div class="btn btn-default btn-file">
+                            <i class="fa fa-paperclip"></i>
+                            BusinessLogo
+                            <input asp-for="BusinessLogo" type="file" style="margin-top:10px" />
+                        </div>
+                        <input type="hidden" name="BusinessLogo3" value="@Model.BusinessLogo"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BusinessDetails" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="BusinessDetails" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserId" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <select asp-for="UserId" asp-items="ViewBag.Users" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BillTo" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="BillTo" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClientDetails" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="ClientDetails" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Currency" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Currency" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Dated" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input type="text" asp-for="Dated" class="form-control" />
+                        <script>$(function () { $('#Dated').datepicker({ autoclose: true }); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DueDate" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input type="text" asp-for="DueDate" class="form-control" />
+                        <script>$(function () { $('#DueDate').datepicker({ autoclose: true }); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ItemJson" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="ItemJson" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubTotal" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="SubTotal" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tax" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Tax" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="TotalDue" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="TotalDue" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PaidAmount" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="PaidAmount" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BalanceDue" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="BalanceDue" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsPaid" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsPaid" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="AddedBy" value="@Model.AddedBy" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="DateAdded" value="@Model.DateAdded" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="ModifiedBy" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="DateModified" value="@DateTime.Now.ToTimeZoneDate()" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsQuote" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsQuote" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="Note" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TermsAndCondition" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="TermsAndCondition" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sign" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Sign" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { CancelButtonText = Localizer["Cancel"].Value, SubmitButtonText = Localizer["Submit"].Value })
+</form>

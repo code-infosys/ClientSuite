@@ -1,0 +1,48 @@
+@model ClientSuite.Models.EmailMessage
+
+<script src="~/theme/bc/ckeditor/ckeditor.js"></script>
+@Html.AjaxFormSubmiterV2("myForm", "tbEmailMessage", true,  Localizer["ActionSuccess"].Value)
+
+<form id="myForm" asp-action="Edit" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = Localizer["FillRequired"].Value })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="FromUserId" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Subject" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Subject" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Body" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="Body" class="form-control ckeditor"></textarea>
+                        <script>$(function () { CKEDITOR.instances["Body"].destroy(); CKEDITOR.replace('Body'); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="SentDate" value="@DateTime.Now.ToTimeZoneDate()" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AttachmentJson" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="AttachmentJson" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { CancelButtonText = Localizer["Cancel"].Value, SubmitButtonText = Localizer["Submit"].Value })
+</form>

@@ -1,0 +1,20 @@
+admin can seen all, user can seen only self data
+
+In controller 
+ 
+            return Json(_userService.GetGrid(param,UserId(), RoleId())); 
+
+_________________
+In services
+
+private int adminRole = 1;
+        public DTResult<UserViewModel> GetGrid(DTParameters param, int user, int role)
+        {
+            var conditionData = this.GetAll().AsQueryable();
+            if (role == adminRole)
+                conditionData = this.GetAll().AsQueryable();
+            else
+            {
+                conditionData = this.GetAll().Where(i => i.Id == user).AsQueryable(); 
+            } 
+            var tableDataSource = conditionData.Select.....

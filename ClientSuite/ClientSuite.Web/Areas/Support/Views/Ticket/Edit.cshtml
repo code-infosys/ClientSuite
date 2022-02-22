@@ -1,0 +1,113 @@
+@model ClientSuite.Models.Ticket
+
+<script src="~/theme/bc/ckeditor/ckeditor.js"></script>
+<link href="~/theme/Select2/select2.min.css" rel="stylesheet" />
+<script src="~/theme/Select2/select2.full.min.js"></script>
+ 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.select2').select2({ maximumSelectionLength: 1 });
+        });
+    </script>
+@Html.AjaxFormSubmiterV2("myForm", "tbTicket", true,  Localizer["ActionSuccess"].Value)
+
+<form id="myForm" asp-action="Edit" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = Localizer["FillRequired"].Value })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="ProductId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="ProductId" asp-items="ViewBag.Products" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TicketSubject" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="TicketSubject" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PriorityId" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <select asp-for="PriorityId" asp-items="ViewBag.Prioritys" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+             
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="AddedBy" value="@Model.AddedBy" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="DateAdded" value="@Model.DateAdded" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Attachment" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <div class="btn btn-default btn-file">
+                            <i class="fa fa-paperclip"></i>
+                            Attachment
+                            <input asp-for="Attachment" type="file" style="margin-top:10px" />
+                        </div>
+                        <input type="hidden" name="Attachment9" value="@Model.Attachment" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="ModifiedBy" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="IsClose" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsClose" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="DateModified" value="@DateTime.Now.ToTimeZoneDate()" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ParentId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="ParentId" asp-items="ViewBag.Tickets" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsKnowledgeBase" class="col-lg-4 col-sm-6 control-label"></label><label class="star-required control-label">*</label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsKnowledgeBase" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="form-group">
+                    <label asp-for="TicketBody" class="col-lg-12 control-label"></label>
+                    <div class="col-lg-12">
+                        <textarea asp-for="TicketBody" class="form-control ckeditor"></textarea>
+                        <script>$(function () { CKEDITOR.instances["TicketBody"].destroy(); CKEDITOR.replace('TicketBody'); });</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { CancelButtonText = Localizer["Cancel"].Value, SubmitButtonText = Localizer["Submit"].Value })
+</form>
